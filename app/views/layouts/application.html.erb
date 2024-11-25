@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="min-h-screen bg-gray-900">
+      <main class="container mx-auto px-5 flex bg-gray-900">
+       <!-- Gradient Background Effect -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-teal-900 to-gray-900 opacity-50"></div>
+        <%= render "layouts/navigation" %>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
