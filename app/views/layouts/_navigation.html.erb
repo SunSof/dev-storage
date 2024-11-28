@@ -7,6 +7,18 @@
         </div>
         <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-teal-800/50 to-orange-800/50 transform scale-x-100 transition-transform"></div>
       </div>
+       <div class="flex items-center space-x-6">
+        
+        <% if current_user %>
+          <% if current_user.role_admin? %>
+            <%= link_to "Properties", properties_list_path, class: "text-orange-400 hover:text-teal-500 transition-colors" %>
+            <%= link_to "Agents", agents_list_path, class: "text-orange-400 hover:text-teal-500 transition-colors" %>
+            <%= link_to "Account", account_path(current_user), class: "text-orange-400 hover:text-teal-500 transition-colors" %>
+          <% elsif current_user.role_agent? %>
+            <%= link_to "Properties", properties_list_path, class: "text-orange-400 hover:text-teal-500 transition-colors" %>
+            <%= link_to "Account", account_path(current_user), class: "text-orange-400 hover:text-teal-500 transition-colors" %>
+          <% end %>
+        <% end %>
     </div>
   </div>
 </nav>

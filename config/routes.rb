@@ -11,4 +11,16 @@ Rails.application.routes.draw do
   get "login" => "user_sessions#new", as: "login"
   post "login" => "user_sessions#create"
   post "logout" => "user_sessions#destroy", as: "logout"
+
+  get "show" => "properties#show", as: "properties_list"
+
+  resources :users do
+    member do
+      get :show
+    end
+  end
+
+  get ":id/show" => "users#show", as: "account"
+
+  get "agents_list" => "users#agents_list", as: "agents_list"
 end
