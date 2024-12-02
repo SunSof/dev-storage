@@ -1,0 +1,88 @@
+<div class="min-h-screen w-full flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-2xl relative">
+    <div class="relative bg-gray-900 rounded-xl overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-orange-500/20 rounded-xl"></div>
+      <div class="p-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold">
+            <span class="bg-gradient-to-r from-teal-400 to-orange-400 text-transparent bg-clip-text">
+              Account Information
+            </span>
+          </h2>
+          <p class="mt-2 text-sm text-gray-400">
+            Manage your profile and settings
+          </p>
+        </div>
+
+        <!-- User Info Section -->
+        <div class="space-y-6">
+          <!-- Profile Section -->
+          <div class="bg-gray-800/50 rounded-lg p-6 border border-teal-800/50">
+            <h3 class="text-xl font-semibold text-teal-300 mb-4">Profile Details</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-teal-300 mb-2">Full Name</label>
+                <div class="text-white bg-gray-800/50 px-4 py-3 rounded-lg border border-teal-800/50">
+                  <%= current_user.id %>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-teal-300 mb-2">Email</label>
+                <div class="text-white bg-gray-800/50 px-4 py-3 rounded-lg border border-teal-800/50">
+                  <%= current_user.email %>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-teal-300 mb-2">Role</label>
+                <div class="text-white bg-gray-800/50 px-4 py-3 rounded-lg border border-teal-800/50">
+                  <%= current_user.role.capitalize %>
+                </div>
+              </div>
+            </div>
+
+            <%= button_to "#", 
+              method: :get,
+              form: { class: "inline-flex" },
+              class: "group relative flex w-fit items-center justify-center gap-2 mt-5 rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 px-4 py-2 text-sm font-medium text-white hover:from-teal-600 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-gray-900" do %>
+              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              Edit Profile
+            <% end %>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="bg-red-900/20 rounded-lg p-6 border border-red-800/50">
+            <h3 class="text-xl font-semibold text-red-400 mb-4">Danger Zone</h3>
+            <div class="flex space-x-4">
+              <%= button_to "#", 
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete your account? This action cannot be undone." },
+                form: { class: "inline-flex" },
+                class: "group relative flex w-fit items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900" do %>
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Delete Account
+              <% end %>
+
+              <%= button_to logout_path, 
+                method: :post,
+                form: { class: "inline-flex" },
+                class: "group relative flex w-fit items-center justify-center gap-2 rounded-lg bg-orange-400 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900" do %>
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V4a1 1 0 011-1h2a1 1 0 011 1v3" />
+                </svg>
+                Logout
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
